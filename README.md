@@ -1,12 +1,12 @@
-# corretto-8-yum
+# Corretto with Daily `yum update`
 
-This is a clone of Dockerfile for [Corretto 8](https://aws.amazon.com/corretto/) with `yum update` applied.
+This is a clone of Dockerfile for [Corretto 8 & 11](https://aws.amazon.com/corretto/) with `yum update` applied.
 
-## Building
+## Tags
 
-```
-docker build -t amazon-corretto-8-yum github.com/1zha0/docker-corretto-8-yum
-```
+- latest-yum
+- 8-yum
+- 11-yum
 
 ## Testing
 

@@ -52,7 +52,7 @@ for version in ${AMAZON_CORRETTO_VERSIONS[@]}; do
 done
 
 echo -n "Generating symlinks for current versions.. "
-latest=$(echo "${FLINK_VERSIONS[@]}" | tr ' ' '\n\' | uniq | sort -n | head -n1)
+latest=$(echo "${AMAZON_CORRETTO_VERSIONS[@]}" | tr ' ' '\n\' | uniq | sort -n | head -n1)
 [ -e current ] && rm current || true
 ln -s ${latest} current
 echo "done"

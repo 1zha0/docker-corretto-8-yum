@@ -8,15 +8,16 @@ set -o pipefail -e
 # test-image.yaml.tpl
 
 AMAZON_CORRETTO_VERSIONS=(8 11)
+SUFFIX="yum"
 
 gen_dockerfile() {
   DOCKERFILE_TEMPLATE="Dockerfile.corretto-yum.tpl"
   TEST_IMAGE_SH_TEMPLATE="test-image.sh.tpl"
   TEST_IMAGE_YAML_TEMPLATE="test-image.yaml.tpl"
 
-  DOCKERFILE_TARGET="${AMAZON_CORRETTO_VERSION}/Dockerfile"
-  TEST_IMAGE_SH_TARGET="${AMAZON_CORRETTO_VERSION}/test-image.sh"
-  TEST_IMAGE_YAML_TARGET="${AMAZON_CORRETTO_VERSION}/test-image.yaml"
+  DOCKERFILE_TARGET="${AMAZON_CORRETTO_VERSION}-${SUFFIX}/Dockerfile"
+  TEST_IMAGE_SH_TARGET="${AMAZON_CORRETTO_VERSION}-${SUFFIX}/test-image.sh"
+  TEST_IMAGE_YAML_TARGET="${AMAZON_CORRETTO_VERSION}-${SUFFIX}/test-image.yaml"
 
   DOCKERFILE_TARGET_DIR="$(dirname ${DOCKERFILE_TARGET})"
   echo -en "Generating Dockerfile for ${AMAZON_CORRETTO_VERSION}.. "
@@ -43,16 +44,14 @@ gen_dockerfile() {
 
 for version in ${AMAZON_CORRETTO_VERSIONS[@]}; do
   AMAZON_CORRETTO_VERSION=$(echo $version)
-  SCALA_VERSION=$(echo $version | cut -d- -f2)
-  HADOOP_VERSION=$(echo $version | cut -d- -f3)
-  OS_VERSION=$(echo $version | cut -d- -f4)
 
   gen_dockerfile
 
 done
 
 echo -n "Generating symlinks for current versions.. "
-latest=$(echo "${AMAZON_CORRETTO_VERSIONS[@]}" | tr ' ' '\n\' | uniq | sort -n | head -n1)
+latest_version=$(echo "${AMAZON_CORRETTO_VERSIONS[@]}" | tr ' ' '\n\' | uniq | sort -n | head -n1)
+latest="${latest_version}-${SUFFIX}"
 [ -e current ] && rm current || true
 ln -s ${latest} current
 echo "done"

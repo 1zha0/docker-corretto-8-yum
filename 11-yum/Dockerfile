@@ -1,4 +1,4 @@
-# amazoncorretto 11 with Daily `yum update`
+# amazoncorretto 11 with daily `yum update`
 
 FROM amazoncorretto:11
 

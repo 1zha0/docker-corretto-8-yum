@@ -1,4 +1,4 @@
-# amazoncorretto 8 with Daily `yum update`
+# amazoncorretto 8 with daily `yum update`
 
 FROM amazoncorretto:8
 

@@ -1,4 +1,4 @@
-# amazoncorretto %AMAZON_CORRETTO_VERSION% with Daily `yum update`
+# amazoncorretto %AMAZON_CORRETTO_VERSION% with daily `yum update`
 
 FROM amazoncorretto:%AMAZON_CORRETTO_VERSION%
 

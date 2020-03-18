@@ -1,4 +1,4 @@
-# Corretto with Daily `yum update`
+# Corretto with daily `yum update`
 
 This is a clone of Dockerfile for [Corretto 8 & 11](https://aws.amazon.com/corretto/) with `yum update` applied.
 
